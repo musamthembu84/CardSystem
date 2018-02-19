@@ -16,7 +16,7 @@ namespace LostCard.Controllers
             IEnumerable<mvcCards> myList = null;
             HttpResponseMessage response = GlobalVariables.webApi.GetAsync("Cards").Result;
             myList = response.Content.ReadAsAsync<IEnumerable<mvcCards>>().Result;
-            return View();
+            return View(myList);
         }
     }
 }
