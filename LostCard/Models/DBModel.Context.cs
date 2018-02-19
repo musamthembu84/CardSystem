@@ -27,5 +27,7 @@ namespace LostCard.Models
     
         public virtual DbSet<Card> Cards { get; set; }
         public virtual DbSet<UserTable> UserTables { get; set; }
+
+        public System.Data.Entity.DbSet<LostCard.Models.mvcCards> mvcCards { get; set; }
     }
 }
