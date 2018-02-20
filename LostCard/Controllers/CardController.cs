@@ -18,5 +18,11 @@ namespace LostCard.Controllers
             myList = response.Content.ReadAsAsync<IEnumerable<mvcCards>>().Result;
             return View(myList);
         }
+
+
+        public ActionResult Register()
+        {
+            return View(new mvcCards());
+        }
     }
 }
