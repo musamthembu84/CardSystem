@@ -80,8 +80,8 @@ namespace LostCard.Controllers
             }
 
 
-            DateTime times = DateTime.Today;
-            card.DateTime = times;
+            
+            card.DateTime = DateTime.Now;
                
             db.Cards.Add(card);
             db.SaveChanges();

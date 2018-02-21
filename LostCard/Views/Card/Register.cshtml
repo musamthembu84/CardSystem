@@ -14,7 +14,7 @@
         <div class="form-group">
 
             @Html.LabelFor(model=>model.SNumber)
-            @Html.EditorFor(model=>model.SNumber)
+            @Html.EditorFor(model=>model.SNumber, new { @type = "number"})
             @Html.ValidationMessageFor(model=>model.SNumber)
 
         </div>
