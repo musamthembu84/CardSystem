@@ -30,7 +30,7 @@ namespace LostCard.Controllers
         {
 
             HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards",student).Result;
-            
+            TempData["SuccessMessage"] = "Saved Successfully";
             return  RedirectToAction("Index");
         }
 

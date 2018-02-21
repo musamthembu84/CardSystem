@@ -11,7 +11,10 @@ namespace LostCard.Models
         public int ID { get; set; }
 
        // [Required(ErrorMessage ="Only 9 Digit Integer Value Accepted")]
-       [RegularExpression("[1-9][0-9]",ErrorMessage ="Only 9 Digit Numbers Accepted")]
+       [Required]
+       [MinLength(9)]
+       [MaxLength(9)]
+       [RegularExpression("^[0-9]*$", ErrorMessage ="Only 9 Digit Numbers Accepted")]
         public string SNumber { get; set; }
 
 
