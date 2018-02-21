@@ -10,6 +10,7 @@ namespace LostCard.Controllers
 {
     public class CardController : Controller
     {
+        private LostCardsEntities db = new LostCardsEntities();
         // GET: Card
         public ActionResult Index()
         {
@@ -20,6 +21,12 @@ namespace LostCard.Controllers
         }
 
 
+
+        public IQueryable <Card> GetCards()
+        {
+            return db.Cards;
+
+        }
         public ActionResult Register(int i = 0)
         {
             return View(new mvcCards());
@@ -29,9 +36,21 @@ namespace LostCard.Controllers
         public ActionResult Register(mvcCards student)
         {
 
-            HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards",student).Result;
-            TempData["SuccessMessage"] = "Saved Successfully";
-            return  RedirectToAction("Index");
+
+            bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
+
+            if (anyUserExists == true)
+            {
+                return RedirectToAction("CardAvailable");
+            }
+
+            else
+            {
+                HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
+                TempData["SuccessMessage"] = "Saved Successfully";
+                return RedirectToAction("Index");
+            }
+           
         }
 
 
