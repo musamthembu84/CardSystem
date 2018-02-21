@@ -20,9 +20,34 @@ namespace LostCard.Controllers
         }
 
 
-        public ActionResult Register()
+        public ActionResult Register(int i = 0)
         {
             return View(new mvcCards());
         }
+
+        [HttpPost]
+        public ActionResult Register(mvcCards student)
+        {
+
+            HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards",student).Result;
+            
+            return  RedirectToAction("Index");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
