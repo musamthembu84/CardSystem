@@ -79,6 +79,10 @@ namespace LostCard.Controllers
                 return BadRequest(ModelState);
             }
 
+
+            DateTime times = DateTime.Today;
+            card.DateTime = times;
+               
             db.Cards.Add(card);
             db.SaveChanges();
 
