@@ -11,7 +11,6 @@ namespace LostCard.Controllers
     public class CardController : Controller
     {
         private LostCardsEntities db = new LostCardsEntities();
-        private string location;
         // GET: Card
         public ActionResult Index()
         {
