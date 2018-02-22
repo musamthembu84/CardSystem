@@ -1,0 +1,45 @@
+﻿@model LostCard.Models.mvcAdmin
+@{
+    ViewBag.Title = "SignIn";
+}
+
+<h2>SignIn</h2>
+
+
+
+
+<div class="form-group">
+
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.UserName)
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login" />
+        </div>
+    }
+
+
+</div>
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval");
+}
+
+
+
+
