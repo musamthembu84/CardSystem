@@ -48,7 +48,6 @@ namespace LostCard.Controllers
             if (anyUserExists == true)
             {
 
-                location = student.Campus;
                 return RedirectToAction("CardAvailable",student);
                 
             }
@@ -73,17 +72,20 @@ namespace LostCard.Controllers
 
             if (isCard == true)
             {
-                RedirectToAction("CardAvailable");
+              return  RedirectToAction("CardAvailable",student);
             }
 
             else
             {
-                RedirectToAction("NotAvailable");
+               return RedirectToAction("NotAvailable",student);
             }
-            return View();
+            
         }
 
-
+        public ActionResult Search (int id = 0)
+        {
+            return View(new mvcCards());
+        }
 
         public ActionResult NotAvailable(mvcCards student)
         {
