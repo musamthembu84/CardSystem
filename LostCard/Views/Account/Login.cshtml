@@ -1,4 +1,4 @@
-﻿@model LostCard.Models.mvcCards
+﻿@model LostCard.Models.mvcAdmin
 
 @{
     ViewBag.Title = "Log in";
@@ -13,20 +13,20 @@
     {
         <div class="form-group">
 
-            @Html.LabelFor(model => model.SNumber)
-            @Html.EditorFor(model => model.SNumber)
-            @Html.ValidationMessageFor(model => model.SNumber)
+            @Html.LabelFor(model =>model.UserName)
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
 
         </div>
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Campus)
-            @Html.EditorFor(model => model.Campus)
-            @Html.ValidationMessageFor(model => model.Campus)
+            @Html.LabelFor(model => model.Password)
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
         </div>
         <div class="form-group">
-            <input type="submit" value="Register Number" />
+            <input type="submit" value="Login" />
         </div>
     }
 

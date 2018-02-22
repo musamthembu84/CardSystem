@@ -17,8 +17,18 @@ namespace LostCard.Controllers
     {
         private LostCardsEntities db = new LostCardsEntities();
 
+        private IQueryable<Card> GetCards()
+        {
+
+        }
+
         [HttpPost]
-        public ActionResult LogIn(mvcCards admin)
+        public ActionResult LogIn(mvcAdmin admin)
+        {
+            string userName=
+            return RedirectToAction("Cards/Index");
+        }
+        public ActionResult LogIn(int id=0)
         {
             return View("Login");
         }
