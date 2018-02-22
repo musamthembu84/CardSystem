@@ -1,7 +1,42 @@
-﻿
+﻿@model LostCard.Models.mvcCards
 @{
     ViewBag.Title = "Removal";
 }
 
-<h2>Student Card @ViewBag.this_student_card Successfully Removed</h2>
+<h2>Retrieve</h2>
 
+
+<div class="form-group">
+
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.SNumber)
+            @Html.EditorFor(model => model.SNumber)
+            @Html.ValidationMessageFor(model => model.SNumber)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.SMS)
+            @Html.EditorFor(model => model.SMS)
+            @Html.ValidationMessageFor(model => model.SMS)
+
+        </div>
+
+
+
+        <div class="form-group">
+            <input type="submit" value="Retrieve" />
+        </div>
+    }
+
+
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval");
+}

@@ -352,6 +352,7 @@
     <Content Include="Views\Card\Search.cshtml" />
     <Content Include="Views\Card\Failed.cshtml" />
     <Content Include="Views\Card\Removal.cshtml" />
+    <Content Include="Views\Card\RemoveSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

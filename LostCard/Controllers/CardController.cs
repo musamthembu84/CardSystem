@@ -43,33 +43,43 @@ namespace LostCard.Controllers
         {
 
 
-            bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
-
-            if (anyUserExists == true)
+            try
             {
+                bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
 
-                return RedirectToAction("CardAvailable",student);
-                
-            }
-
-            else
-            {
-
-                EmailConfiguration emails = new EmailConfiguration();
-                bool isValid = emails.Email(student);
-
-                if (isValid == true)
+                if (anyUserExists == true)
                 {
-                    return RedirectToAction("Failed");
+
+                    return RedirectToAction("CardAvailable", student);
+
                 }
+
                 else
                 {
-                    HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
-                    TempData["SuccessMessage"] = "Saved Successfully";
-                    return RedirectToAction("Index");
+
+                    EmailConfiguration emails = new EmailConfiguration();
+                    bool isValid = emails.Email(student);
+
+                    if (isValid == true)
+                    {
+                        return RedirectToAction("Failed");
+                    }
+                    else
+                    {
+                        HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
+                        TempData["SuccessMessage"] = "Saved Successfully";
+                        return RedirectToAction("Index");
+                    }
+
                 }
-                
             }
+            catch(Exception Ex)
+            {
+                Ex.GetBaseException();
+                return RedirectToAction("Failed");
+            }
+
+           
            
         }
 
@@ -94,6 +104,7 @@ namespace LostCard.Controllers
             
         }
 
+        [HttpPost]
         public ActionResult Removal(mvcCards student)
         {
             Card record = db.Cards.SingleOrDefault(x => x.SNumber == student.SNumber);
@@ -105,16 +116,21 @@ namespace LostCard.Controllers
             db.Cards.Remove(record);
             db.SaveChanges();
            
-           return RedirectToAction("Removal", student);
+           return RedirectToAction("RemoveSuccess", student);
            
         }
 
-        public ActionResult Removal(int id = 0)
+        public ActionResult RemoveSuccess(mvcCards student )
         {
             ViewBag.this_student_card = student.SNumber;
             return View(new mvcCards());
         }
         public ActionResult Failed(int id = 0)
+        {
+            return View(new mvcCards());
+        }
+
+        public ActionResult Removal(int id = 0)
         {
             return View(new mvcCards());
         }
