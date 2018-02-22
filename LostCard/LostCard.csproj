@@ -77,6 +77,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="mysql.data">
+      <HintPath>..\..\..\..\..\Desktop\Aart\card\RCNS\RCNS\RCNS\bin\x86\Release\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenPop">
+      <HintPath>..\..\..\..\..\Desktop\Aart\card\RCNS\RCNS\RCNS\bin\x86\Release\OpenPop.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -236,6 +242,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailConfiguration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\mvcCards.cs" />
@@ -343,6 +350,7 @@
     <Content Include="Views\Card\CardAvailable.cshtml" />
     <Content Include="Views\Card\NotAvailable.cshtml" />
     <Content Include="Views\Card\Search.cshtml" />
+    <Content Include="Views\Card\Failed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

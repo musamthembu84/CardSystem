@@ -6,6 +6,7 @@ using System.Net.Mail;
 using OpenPop.Pop3;
 using OpenPop.Mime;
 using OpenPop.Common;
+using System.Net;
 
 namespace LostCard.Models
 {

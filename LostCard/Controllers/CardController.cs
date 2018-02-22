@@ -54,9 +54,21 @@ namespace LostCard.Controllers
 
             else
             {
-                HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
-                TempData["SuccessMessage"] = "Saved Successfully";
-                return RedirectToAction("Index");
+
+                EmailConfiguration emails = new EmailConfiguration();
+                bool isValid = emails.Email(student);
+
+                if (isValid == true)
+                {
+                    return RedirectToAction("Failed");
+                }
+                else
+                {
+                    HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
+                    TempData["SuccessMessage"] = "Saved Successfully";
+                    return RedirectToAction("Index");
+                }
+                
             }
            
         }
@@ -82,6 +94,11 @@ namespace LostCard.Controllers
             
         }
 
+
+        public ActionResult Failed(int id = 0)
+        {
+            return View(new mvcCards());
+        }
         public ActionResult Search (int id = 0)
         {
             return View(new mvcCards());
