@@ -14,7 +14,7 @@ namespace LostCard.Models
 
         private bool isCardValid(string email,string password)
         {
-            bool localCheck = false;
+            bool checkStatus = false;
             Pop3Client client = new Pop3Client();
             client.Connect("pop.gmail.com", 995, true);
             client.Authenticate(email, password);
@@ -25,10 +25,10 @@ namespace LostCard.Models
             if (counter >= 1)
             {
                 client.DeleteAllMessages();
-                localCheck = true;
+                checkStatus = true;
                 client.Disconnect();
             }
-            return localCheck;
+            return checkStatus;
 
         }
         
