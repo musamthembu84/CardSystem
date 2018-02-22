@@ -69,12 +69,28 @@ namespace LostCard.Controllers
         [HttpPost]
         public ActionResult Search(mvcCards student)
         {
+            bool isCard = db.Cards.Any(x => x.SNumber == student.SNumber);
 
+            if (isCard == true)
+            {
+                RedirectToAction("CardAvailable");
+            }
+
+            else
+            {
+                RedirectToAction("NotAvailable");
+            }
             return View();
         }
 
 
 
+        public ActionResult NotAvailable(mvcCards student)
+        {
+            ViewBag.this_student_card = student.SNumber;
+            return View(new mvcCards());
+
+        }
 
         public ActionResult CardAvailable(mvcCards student)
         {

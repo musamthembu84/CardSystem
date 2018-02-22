@@ -1,0 +1,21 @@
+﻿@model LostCard.Models.mvcCards
+@{
+    ViewBag.Title = "Search";
+}
+
+
+<div class="form-group">
+
+    @using (Html.BeginForm()){
+
+      <div class="form-group">
+
+          @Html.EditorFor(model=>model.SNumber)
+          @Html.LabelFor(model=>model.SNumber)
+          @Html.ValidationMessageFor(model=>model.SNumber)
+      </div> 
+    })
+
+</div>
+<h2>Search</h2>
+
