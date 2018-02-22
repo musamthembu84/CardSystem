@@ -351,6 +351,7 @@
     <Content Include="Views\Card\NotAvailable.cshtml" />
     <Content Include="Views\Card\Search.cshtml" />
     <Content Include="Views\Card\Failed.cshtml" />
+    <Content Include="Views\Card\Removal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

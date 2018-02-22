@@ -108,6 +108,12 @@ namespace LostCard.Controllers
            return RedirectToAction("Removal", student);
            
         }
+
+        public ActionResult Removal(int id = 0)
+        {
+            ViewBag.this_student_card = student.SNumber;
+            return View(new mvcCards());
+        }
         public ActionResult Failed(int id = 0)
         {
             return View(new mvcCards());
