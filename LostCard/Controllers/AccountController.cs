@@ -17,9 +17,10 @@ namespace LostCard.Controllers
     {
         private LostCardsEntities db = new LostCardsEntities();
 
-        public ActionResult LogIn()
+        [HttpPost]
+        public ActionResult LogIn(mvcCards admin)
         {
-            return View();
+            return View("Login");
         }
        
     }
