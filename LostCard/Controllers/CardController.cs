@@ -11,6 +11,7 @@ namespace LostCard.Controllers
     public class CardController : Controller
     {
         private LostCardsEntities db = new LostCardsEntities();
+        private string location;
         // GET: Card
         public ActionResult Index()
         {
@@ -27,6 +28,11 @@ namespace LostCard.Controllers
             return db.Cards;
 
         }
+
+
+       
+
+
         public ActionResult Register(int i = 0)
         {
             return View(new mvcCards());
@@ -41,7 +47,10 @@ namespace LostCard.Controllers
 
             if (anyUserExists == true)
             {
-                return RedirectToAction("CardAvailable");
+
+                location = student.Campus;
+                return RedirectToAction("CardAvailable",student);
+                
             }
 
             else
@@ -63,6 +72,23 @@ namespace LostCard.Controllers
 
 
 
+        public ActionResult CardAvailable(mvcCards student)
+        {
+
+
+            
+
+            ViewBag.stu = student.SNumber;
+             var logs = db.Cards.Where(x => x.SNumber == student.SNumber).ToList();
+
+
+            string lost = db.Cards.Where(x => x.SNumber == student.SNumber).Select(u => u.Campus).FirstOrDefault();
+
+             ViewBag.lo = lost;
+
+
+            return View(new mvcCards());
+        }
 
 
 
