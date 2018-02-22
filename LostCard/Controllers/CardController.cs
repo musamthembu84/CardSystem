@@ -94,7 +94,20 @@ namespace LostCard.Controllers
             
         }
 
+        public ActionResult Removal(mvcCards student)
+        {
+            Card record = db.Cards.SingleOrDefault(x => x.SNumber == student.SNumber);
+            if (record == null)
+            {
+                return RedirectToAction("NotAvailable", student);   
+            }
 
+            db.Cards.Remove(record);
+            db.SaveChanges();
+           
+           return RedirectToAction("Removal", student);
+           
+        }
         public ActionResult Failed(int id = 0)
         {
             return View(new mvcCards());

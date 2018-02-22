@@ -19,6 +19,8 @@ namespace LostCard.Models
 
 
         public Nullable<System.DateTime> DateTime { get; set; }
+
+        [Required]
         public string Campus { get; set; }
         public string SMS { get; set; }
     }
