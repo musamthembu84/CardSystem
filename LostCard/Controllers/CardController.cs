@@ -66,8 +66,12 @@ namespace LostCard.Controllers
 
 
 
+        [HttpPost]
+        public ActionResult Search(mvcCards student)
+        {
 
-
+            return View();
+        }
 
 
 
@@ -75,18 +79,9 @@ namespace LostCard.Controllers
         public ActionResult CardAvailable(mvcCards student)
         {
 
-
-            
-
-            ViewBag.stu = student.SNumber;
-             var logs = db.Cards.Where(x => x.SNumber == student.SNumber).ToList();
-
-
+            ViewBag.studentCard = student.SNumber;
             string lost = db.Cards.Where(x => x.SNumber == student.SNumber).Select(u => u.Campus).FirstOrDefault();
-
-             ViewBag.lo = lost;
-
-
+            ViewBag.studentCampus = lost;
             return View(new mvcCards());
         }
 
