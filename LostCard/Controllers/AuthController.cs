@@ -25,14 +25,6 @@ namespace LostCard.Controllers
             return View(new mvcAdmin());
         }
 
-
-       
-        // GET: Auth
-       /* public ActionResult Index()
-        {
-            return View();
-        }*/
-
         public ActionResult LogIn(int id =0)
         {
             return View();
@@ -42,15 +34,15 @@ namespace LostCard.Controllers
         public ActionResult LogIn(mvcAdmin admin)
         {
                bool isPass = db.UserTables.Any(y => y.Password == admin.Password);
-
+               bool isUser = db.UserTables.Any(z => z.UserName == admin.UserName);
                 if (isPass == true)
                 {
-                    return RedirectToAction("~/Home/Index");
+                    return RedirectToAction("Index","Card");
                 }
                 else
                 {
-                    ViewBag.status = "Incorrect username and password";
-                    return View("Login", admin);
+                TempData["SuccessMessage"] = "Incorrect username or password";
+                return View("Login", admin);
                 }
             
 

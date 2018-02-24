@@ -23,6 +23,7 @@
             @Html.LabelFor(model => model.Password)
             @Html.EditorFor(model => model.Password)
             @Html.ValidationMessageFor(model => model.Password)
+            @Html.PasswordFor(model=>model.Password)
         </div>
         <div class="form-group">
             <input type="submit" value="Log In" />
@@ -32,3 +33,19 @@
 
 </div>
 
+@section scripts{
+
+
+    <script>
+
+        $(function () {
+
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '') {
+                alertify.success(successMessage);
+            }
+
+        })
+    </script>
+
+}
