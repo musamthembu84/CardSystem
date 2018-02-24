@@ -40,43 +40,50 @@ namespace LostCard.Controllers
         [HttpPost]
         public ActionResult Register(mvcCards student)
         {
-
-
-            try
+            if (Session["UserName"] != null)
             {
-                bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
-
-                if (anyUserExists == true)
+                try
                 {
+                    bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
 
-                    return RedirectToAction("CardAvailable", student);
-
-                }
-
-                else
-                {
-
-                    EmailConfiguration emails = new EmailConfiguration();
-                    bool isValid = emails.Email(student);
-
-                    if (isValid == true)
+                    if (anyUserExists == true)
                     {
-                        return RedirectToAction("Failed");
+
+                        return RedirectToAction("CardAvailable", student);
+
                     }
+
                     else
                     {
-                        HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
-                        TempData["SuccessMessage"] = "Saved Successfully";
-                        return RedirectToAction("Index");
-                    }
 
+                        EmailConfiguration emails = new EmailConfiguration();
+                        bool isValid = emails.Email(student);
+
+                        if (isValid == true)
+                        {
+                            return RedirectToAction("Failed");
+                        }
+                        else
+                        {
+                            HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
+                            TempData["SuccessMessage"] = "Saved Successfully";
+                            return RedirectToAction("Index");
+                        }
+
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.GetBaseException();
+                    return RedirectToAction("Failed");
                 }
             }
-            catch(Exception Ex)
+            else
             {
-                Ex.GetBaseException();
-                return RedirectToAction("Failed");
+                return RedirectToAction("Auth", "Login");
             }
+
+           
 
            
            
