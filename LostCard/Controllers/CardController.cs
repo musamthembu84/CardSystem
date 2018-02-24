@@ -40,8 +40,8 @@ namespace LostCard.Controllers
         [HttpPost]
         public ActionResult Register(mvcCards student)
         {
-            if (Session["UserName"] != null)
-            {
+         //   if (Session["UserName"] != null)
+           // {
                 try
                 {
                     bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
@@ -77,11 +77,11 @@ namespace LostCard.Controllers
                     Ex.GetBaseException();
                     return RedirectToAction("Failed");
                 }
-            }
+           /* }
             else
             {
                 return RedirectToAction("Auth", "Login");
-            }
+            }*/
 
            
 
@@ -122,16 +122,24 @@ namespace LostCard.Controllers
         [HttpPost]
         public ActionResult Removal(mvcCards student)
         {
-            Card record = db.Cards.SingleOrDefault(x => x.SNumber == student.SNumber);
-            if (record == null)
+            if (Session["UserName"] != null)
             {
-                return RedirectToAction("NotAvailable", student);   
-            }
+                Card record = db.Cards.SingleOrDefault(x => x.SNumber == student.SNumber);
+                if (record == null)
+                {
+                    return RedirectToAction("NotAvailable", student);
+                }
 
-            db.Cards.Remove(record);
-            db.SaveChanges();
+                db.Cards.Remove(record);
+                db.SaveChanges();
+
+                return RedirectToAction("RemoveSuccess", student);
+            }
+            else
+            {
+                return RedirectToAction("Auth", "LogIn");
+            }
            
-           return RedirectToAction("RemoveSuccess", student);
            
         }
 
