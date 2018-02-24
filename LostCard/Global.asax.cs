@@ -11,6 +11,8 @@ namespace LostCard
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+
+       
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,8 +20,6 @@ namespace LostCard
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            int temp = 4;
-            HttpContext.Current.Session.Add("_SessionCompany", temp);
         }
     }
 }

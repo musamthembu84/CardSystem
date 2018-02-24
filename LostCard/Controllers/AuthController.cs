@@ -35,9 +35,14 @@ namespace LostCard.Controllers
         {
                bool isPass = db.UserTables.Any(y => y.Password == admin.Password);
                bool isUser = db.UserTables.Any(z => z.UserName == admin.UserName);
-                if (isPass == true)
+               var obj = db.UserTables.Where(a => a.UserName.Equals(admin.UserName) && a.Password.Equals(admin.Password)).FirstOrDefault();
+
+            if (isPass == true)
                 {
-                    return RedirectToAction("Index","Card");
+
+              //  Session["UserID"] = obj.UserName.ToString();
+                Session["UserName"] = obj.UserName.ToString();
+                return RedirectToAction("Index","Card");
                 }
                 else
                 {
