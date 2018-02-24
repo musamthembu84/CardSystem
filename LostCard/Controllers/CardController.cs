@@ -10,7 +10,7 @@ namespace LostCard.Controllers
 {
     public class CardController : Controller
     {
-        private LostCardsEntities db = new LostCardsEntities();
+        private LostCardsEntities1 db = new LostCardsEntities1();
         // GET: Card
         public ActionResult Index()
         {

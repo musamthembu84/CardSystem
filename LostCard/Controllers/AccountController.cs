@@ -15,7 +15,7 @@ namespace LostCard.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private LostCardsEntities db = new LostCardsEntities();
+        private LostCardsEntities1 db = new LostCardsEntities1();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 

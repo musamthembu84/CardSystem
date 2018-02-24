@@ -5,42 +5,66 @@ using System.Web;
 using System.Web.Mvc;
 using LostCard.Models;
 using System.Data.Entity;
+using System.Net.Http;
 
 namespace LostCard.Controllers
 {
     public class AuthController : Controller
     {
-        private LostCardsEntities db = new LostCardsEntities();
+        private LostCardsEntities1 db = new LostCardsEntities1();
 
 
         private IQueryable<UserTable> GetCards()
         {
 
-           return db.UserTable;
+           return db.UserTables;
         }
+
+        public ActionResult Done()
+        {
+            return View(new mvcAdmin());
+        }
+
+
+       
         // GET: Auth
-        public ActionResult Index()
+       /* public ActionResult Index()
+        {
+            return View();
+        }*/
+
+        public ActionResult LogIn(int id =0)
         {
             return View();
         }
 
+       [HttpPost]
         public ActionResult LogIn(mvcAdmin admin)
         {
-            // bool isUser=db.Cards.Any(x=>x.)
+               bool isPass = db.UserTables.Any(y => y.Password == admin.Password);
 
-            bool isUser = db.UserTable.Any(x => x.UserName == admin.UserName);
-            bool isPass = db.UserTable.Any(y => y.Password == admin.Password);
+                if (isPass == true)
+                {
+                    return RedirectToAction("~/Home/Index");
+                }
+                else
+                {
+                    ViewBag.status = "Incorrect username and password";
+                    return View("Login", admin);
+                }
+            
 
-            if (isUser==true && isPass == true)
-            {
-                return RedirectToAction("~/Home/Index");
-            }
-            else
-            {
-                ViewBag.status = "Incorrect username and password";
-                return View("Login", admin);
-            }
+
            
+        }
+
+
+        [HttpPost]
+        public ActionResult SignIn(mvcAdmin admin)
+        {
+            HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("UserTable", admin).Result;
+
+            return RedirectToAction("Done");
         }
     }
 }

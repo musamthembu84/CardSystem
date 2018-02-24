@@ -14,19 +14,19 @@ namespace LostCard.Controllers
 {
     public class AuthsController : ApiController
     {
-        private LostCardsEntities db = new LostCardsEntities();
+        private LostCardsEntities1 db = new LostCardsEntities1();
 
         // GET: api/Auths
         public IQueryable<UserTable> GetUserTables()
         {
-            return db.UserTable;
+            return db.UserTables;
         }
 
         // GET: api/Auths/5
         [ResponseType(typeof(UserTable))]
         public IHttpActionResult GetUserTable(string id)
         {
-            UserTable userTable = db.UserTable.Find(id);
+            UserTable userTable = db.UserTables.Find(id);
             if (userTable == null)
             {
                 return NotFound();
@@ -37,19 +37,19 @@ namespace LostCard.Controllers
 
         // PUT: api/Auths/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUserTable(string id, UserTable userTable)
+        public IHttpActionResult PutUserTable(int id, UserTable userTables)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != userTable.ID)
+            if (id != userTables.ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(userTable).State = EntityState.Modified;
+            db.Entry(userTables).State = EntityState.Modified;
 
             try
             {
@@ -70,6 +70,11 @@ namespace LostCard.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        private bool UserTableExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         // POST: api/Auths
         [ResponseType(typeof(UserTable))]
         public IHttpActionResult PostUserTable(UserTable userTable)
@@ -79,7 +84,7 @@ namespace LostCard.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.UserTable.Add(userTable);
+            db.UserTables.Add(userTable);
 
             try
             {
@@ -102,15 +107,15 @@ namespace LostCard.Controllers
 
         // DELETE: api/Auths/5
         [ResponseType(typeof(UserTable))]
-        public IHttpActionResult DeleteUserTable(string id)
+        public IHttpActionResult DeleteUserTable(int id)
         {
-            UserTable userTable = db.UserTable.Find(id);
+            UserTable userTable = db.UserTables.Find(id);
             if (userTable == null)
             {
                 return NotFound();
             }
 
-            db.UserTable.Remove(userTable);
+            db.UserTables.Remove(userTable);
             db.SaveChanges();
 
             return Ok(userTable);
@@ -125,9 +130,9 @@ namespace LostCard.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserTableExists(string id)
+        private bool UserTableExists(int id,int s)
         {
-            return db.UserTable.Count(e => e.ID == id) > 0;
+            return db.UserTables.Count(e => e.ID == id) > 0;
         }
     }
 }

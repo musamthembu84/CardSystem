@@ -15,17 +15,26 @@
           <Property Name="Campus" Type="nvarchar" MaxLength="50" />
           <Property Name="SMS" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="UserTables">
+        <EntityType Name="CardUsers">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="UserName" Type="nchar" MaxLength="10" />
-          <Property Name="Password" Type="nchar" MaxLength="10" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="LostCardsModelStoreContainer">
           <EntitySet Name="Cards" EntityType="Self.Cards" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserTables" EntityType="Self.UserTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CardUsers" EntityType="Self.CardUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -42,16 +51,25 @@
           <Property Name="Campus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SMS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="CardUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="UserTable">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="LostCardsEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LostCardsEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cards" EntityType="Self.Card" />
+          <EntitySet Name="CardUsers" EntityType="Self.CardUser" />
           <EntitySet Name="UserTables" EntityType="Self.UserTable" />
         </EntityContainer>
       </Schema>
@@ -59,7 +77,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LostCardsModelStoreContainer" CdmEntityContainer="LostCardsEntities">
+        <EntityContainerMapping StorageEntityContainer="LostCardsModelStoreContainer" CdmEntityContainer="LostCardsEntities1">
           <EntitySetMapping Name="Cards">
             <EntityTypeMapping TypeName="LostCardsModel.Card">
               <MappingFragment StoreEntitySet="Cards">
@@ -71,9 +89,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CardUsers">
+            <EntityTypeMapping TypeName="LostCardsModel.CardUser">
+              <MappingFragment StoreEntitySet="CardUsers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserTables">
             <EntityTypeMapping TypeName="LostCardsModel.UserTable">
-              <MappingFragment StoreEntitySet="UserTables">
+              <MappingFragment StoreEntitySet="UserTable">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

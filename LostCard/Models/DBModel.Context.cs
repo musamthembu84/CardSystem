@@ -12,13 +12,11 @@ namespace LostCard.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core;
     
-
-    public partial class LostCardsEntities : DbContext
+    public partial class LostCardsEntities1 : DbContext
     {
-        public LostCardsEntities()
-            : base("name=LostCardsEntities")
+        public LostCardsEntities1()
+            : base("name=LostCardsEntities1")
         {
         }
     
@@ -26,10 +24,9 @@ namespace LostCard.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-        public virtual DbSet<UserTable> UserTable { get; set; }
+    
         public virtual DbSet<Card> Cards { get; set; }
-      
-
-        public System.Data.Entity.DbSet<LostCard.Models.mvcCards> mvcCards { get; set; }
+        public virtual DbSet<CardUser> CardUsers { get; set; }
+        public virtual DbSet<UserTable> UserTables { get; set; }
     }
 }
