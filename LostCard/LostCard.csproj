@@ -362,6 +362,7 @@
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\Auth\LogIn.cshtml" />
     <Content Include="Views\Auth\Done.cshtml" />
+    <Content Include="Views\Auth\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

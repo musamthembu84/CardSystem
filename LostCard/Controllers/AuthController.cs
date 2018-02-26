@@ -32,7 +32,7 @@ namespace LostCard.Controllers
         }
 
        [HttpPost]
-        public ActionResult LogIn(mvcAdmin admin)
+        public ActionResult SignIn(mvcAdmin admin)
         {
                bool isPass = db.UserTables.Any(y => y.Password == admin.Password);
                bool isUser = db.UserTables.Any(z => z.UserName == admin.UserName);
@@ -58,12 +58,10 @@ namespace LostCard.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult SignIn(mvcAdmin admin)
+       
+        public ActionResult SignIn(int id=0)
         {
-            HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("UserTable", admin).Result;
-
-            return RedirectToAction("Done");
+            return View();
         }
     }
 }
