@@ -14,6 +14,10 @@ namespace LostCard.Controllers
         // GET: Card
         public ActionResult Index()
         {
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             IEnumerable<mvcCards> myList = null;
             HttpResponseMessage response = GlobalVariables.webApi.GetAsync("Cards").Result;
             myList = response.Content.ReadAsAsync<IEnumerable<mvcCards>>().Result;
@@ -34,14 +38,21 @@ namespace LostCard.Controllers
 
         public ActionResult Register(int i = 0)
         {
-            return View(new mvcCards());
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            else
+            {
+                return View(new mvcCards());
+            }
+          
         }
 
         [HttpPost]
         public ActionResult Register(mvcCards student)
         {
-         //   if (Session["UserName"] != null)
-           // {
+           
                 try
                 {
                     bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
@@ -77,11 +88,7 @@ namespace LostCard.Controllers
                     Ex.GetBaseException();
                     return RedirectToAction("Failed");
                 }
-           /* }
-            else
-            {
-                return RedirectToAction("Auth", "Login");
-            }*/
+           
 
            
 
@@ -96,8 +103,7 @@ namespace LostCard.Controllers
         [HttpPost]
         public ActionResult Search(mvcCards student)
         {
-            if (Session["UserName"] != null)
-            {
+            
                 bool isCard = db.Cards.Any(x => x.SNumber == student.SNumber);
 
                 if (isCard == true)
@@ -109,12 +115,7 @@ namespace LostCard.Controllers
                 {
                     return RedirectToAction("NotAvailable", student);
                 }
-            }
-
-            else
-            {
-                return RedirectToAction("Auth", "LogIn");
-            }
+           
            
             
         }
@@ -122,9 +123,7 @@ namespace LostCard.Controllers
         [HttpPost]
         public ActionResult Removal(mvcCards student)
         {
-            if (Session["UserName"] != null)
-            {
-                Card record = db.Cards.SingleOrDefault(x => x.SNumber == student.SNumber);
+             Card record = db.Cards.SingleOrDefault(x => x.SNumber == student.SNumber);
                 if (record == null)
                 {
                     return RedirectToAction("NotAvailable", student);
@@ -134,36 +133,54 @@ namespace LostCard.Controllers
                 db.SaveChanges();
 
                 return RedirectToAction("RemoveSuccess", student);
-            }
-            else
-            {
-                return RedirectToAction("Auth", "LogIn");
-            }
+           
            
            
         }
 
         public ActionResult RemoveSuccess(mvcCards student )
         {
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
             ViewBag.this_student_card = student.SNumber;
             return View(new mvcCards());
         }
         public ActionResult Failed(int id = 0)
         {
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
             return View(new mvcCards());
         }
 
         public ActionResult Removal(int id = 0)
         {
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             return View(new mvcCards());
         }
         public ActionResult Search (int id = 0)
         {
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             return View(new mvcCards());
         }
 
         public ActionResult NotAvailable(mvcCards student)
         {
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             ViewBag.this_student_card = student.SNumber;
             return View(new mvcCards());
 
@@ -171,7 +188,10 @@ namespace LostCard.Controllers
 
         public ActionResult CardAvailable(mvcCards student)
         {
-
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             ViewBag.studentCard = student.SNumber;
             string lost = db.Cards.Where(x => x.SNumber == student.SNumber).Select(u => u.Campus).FirstOrDefault();
             ViewBag.studentCampus = lost;

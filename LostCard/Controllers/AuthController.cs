@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using LostCard.Models;
 using System.Data.Entity;
 using System.Net.Http;
+using System.Web.SessionState;
 
 namespace LostCard.Controllers
 {
@@ -37,11 +38,12 @@ namespace LostCard.Controllers
                bool isUser = db.UserTables.Any(z => z.UserName == admin.UserName);
                var obj = db.UserTables.Where(a => a.UserName.Equals(admin.UserName) && a.Password.Equals(admin.Password)).FirstOrDefault();
 
-            if (isPass == true)
+            if (isPass == true  && isUser==true)
                 {
 
-              //  Session["UserID"] = obj.UserName.ToString();
-                Session["UserName"] = obj.UserName.ToString();
+
+                Session["uname"] = admin.UserName;
+                Session.Timeout = 10;
                 return RedirectToAction("Index","Card");
                 }
                 else
