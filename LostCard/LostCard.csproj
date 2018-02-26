@@ -80,6 +80,10 @@
     <Reference Include="mysql.data">
       <HintPath>..\..\..\..\..\Desktop\Aart\card\RCNS\RCNS\RCNS\bin\x86\Release\mysql.data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="OpenPop">
       <HintPath>..\..\..\..\..\Desktop\Aart\card\RCNS\RCNS\RCNS\bin\x86\Release\OpenPop.dll</HintPath>
     </Reference>
@@ -152,9 +156,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Http">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -353,7 +354,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Card\Index.cshtml" />
     <Content Include="Views\Card\Register.cshtml" />
-    <Content Include="Views\Card\CardAvailable.cshtml" />
     <Content Include="Views\Card\NotAvailable.cshtml" />
     <Content Include="Views\Card\Search.cshtml" />
     <Content Include="Views\Card\Failed.cshtml" />
@@ -363,6 +363,8 @@
     <Content Include="Views\Auth\LogIn.cshtml" />
     <Content Include="Views\Auth\Done.cshtml" />
     <Content Include="Views\Auth\SignIn.cshtml" />
+    <Content Include="Views\Card\CardAvail.cshtml" />
+    <Content Include="Views\Card\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
