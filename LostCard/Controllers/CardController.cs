@@ -68,8 +68,7 @@ namespace LostCard.Controllers
                     {
 
                         EmailConfiguration emails = new EmailConfiguration();
-                    // bool isValid = emails.Email(student);
-                         bool isValid = false;
+                        bool isValid = emails.Email(student);
                         if (isValid == true)
                         {
                             return RedirectToAction("Failed");
@@ -110,12 +109,13 @@ namespace LostCard.Controllers
                 if (isCard == true)
                 {
                    TempData["Student"] = student.SNumber;
-                   return RedirectToAction("CardAvailable");
+                   return RedirectToAction("CardAvail");
                 }
 
                 else
                 {
-                    return RedirectToAction("NotAvailable", student);
+                TempData["Student"] = student.SNumber;
+                return RedirectToAction("NotAvailable");
                 }
            
            
@@ -128,13 +128,15 @@ namespace LostCard.Controllers
              Card record = db.Cards.SingleOrDefault(x => x.SNumber == student.SNumber);
                 if (record == null)
                 {
-                    return RedirectToAction("NotAvailable", student);
+                TempData["Student"] = student.SNumber;
+                return RedirectToAction("NotAvailable");
                 }
 
+                TempData["Delete"] = student.SNumber;
                 db.Cards.Remove(record);
                 db.SaveChanges();
-
-                return RedirectToAction("RemoveSuccess", student);
+                
+                return RedirectToAction("RemoveSuccess");
            
            
            
@@ -159,7 +161,7 @@ namespace LostCard.Controllers
                 return RedirectToAction("Login", "Auth");
             }
 
-            ViewBag.this_student_card = student.SNumber;
+            ViewBag.this_student_card = TempData["Delete"];
             return View(new mvcCards());
         }
         public ActionResult Failed(int id = 0)
@@ -195,8 +197,20 @@ namespace LostCard.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-            ViewBag.this_student_card = student.SNumber;
+            ViewBag.this_student_card = TempData["Student"];
             return View(new mvcCards());
+
+        }
+
+        public ActionResult LogOut(mvcCards student)
+        {
+            if (Session["uname"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            Session.Remove("uname");
+            return RedirectToAction("Login", "Auth");
 
         }
 
