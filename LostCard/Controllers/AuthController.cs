@@ -54,16 +54,41 @@ namespace LostCard.Controllers
            
         }
 
+        [HttpPost]
+        public ActionResult LogIn(mvcAdmin admin)
+        {
+            bool isPass = db.UserTables.Any(y => y.Password == admin.Password);
+            bool isUser = db.UserTables.Any(z => z.UserName == admin.UserName);
+            var obj = db.UserTables.Where(a => a.UserName.Equals(admin.UserName) && a.Password.Equals(admin.Password)).FirstOrDefault();
 
-       
+            if (isPass == true && isUser == true)
+            {
+
+                Session["uname"] = admin.UserName;
+                Session.Timeout = 10;
+                return RedirectToAction("Index", "Card");
+            }
+            else
+            {
+                TempData["SuccessMessage"] = "Incorrect username or password";
+                return View("Login", admin);
+            }
+
+
+
+
+        }
+
+        public ActionResult LogIn(int id = 0)
+        {
+            return View(new mvcAdmin());
+        }
+
         public ActionResult SignIn(int id=0)
         {
             return View();
         }
 
-        public ActionResult LogIn(int id = 0)
-        {
-            return View();
-        }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace LostCard.Controllers
         {
             if (Session["uname"] == null)
             {
-                return RedirectToAction("Login", "Auth");
+                return RedirectToAction("LogIn", "Auth");
             }
             IEnumerable<mvcCards> myList = null;
             HttpResponseMessage response = GlobalVariables.webApi.GetAsync("Cards").Result;
