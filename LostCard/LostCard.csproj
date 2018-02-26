@@ -366,6 +366,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\css\" />
+    <Folder Include="assets\font\" />
+    <Folder Include="assets\images\" />
+    <Folder Include="assets\js\" />
+    <Folder Include="assets\plugins\" />
+    <Folder Include="data\profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

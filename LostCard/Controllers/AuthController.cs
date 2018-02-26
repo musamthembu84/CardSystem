@@ -26,10 +26,7 @@ namespace LostCard.Controllers
             return View(new mvcAdmin());
         }
 
-        public ActionResult LogIn(int id =0)
-        {
-            return View();
-        }
+
 
        [HttpPost]
         public ActionResult SignIn(mvcAdmin admin)
@@ -60,6 +57,11 @@ namespace LostCard.Controllers
 
        
         public ActionResult SignIn(int id=0)
+        {
+            return View();
+        }
+
+        public ActionResult LogIn(int id = 0)
         {
             return View();
         }
