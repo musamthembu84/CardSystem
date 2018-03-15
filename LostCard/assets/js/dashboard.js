@@ -443,7 +443,7 @@ var option_dt = {
                 x: 'left',
                 orient:'vertical',
                 padding: 0,
-                data:['Apple','Windows','Linux','Android','Others']
+                data:['Kingsway','Windows','Linux','Android','Others']
             },
             toolbox: {
                 show : true,
@@ -486,7 +486,7 @@ var option_dt = {
                                         normal : { label : { show : true }, labelLine : { show : true } },
                                         emphasis : { label : { show : false }, labelLine : {show : false} }
                                     },
-                                    data:[{value: 35,  name:'Apple'}, {value: 16,  name:'Windows'}, {value: 27,  name:'Linux'}, {value: 29,  name:'Android'}, {value: 12,  name:'Others'}]
+                                    data:[{value: 31,  name:'Kingsway'}, {value: 16,  name:'Windows'}, {value: 27,  name:'Linux'}, {value: 29,  name:'Android'}, {value: 12,  name:'Others'}]
                                 }
                             ]
                     }, 
@@ -495,7 +495,7 @@ var option_dt = {
                         {
                             name:'05-16',
                             type:'pie',
-                            data:[{value: 42,  name:'Apple'}, {value: 51,  name:'Windows'}, {value: 39,  name:'Linux'}, {value: 25,  name:'Android'}, {value: 9,  name:'Others'}]
+                            data:[{value: 30,  name:'Kingsway'}, {value: 51,  name:'Windows'}, {value: 39,  name:'Linux'}, {value: 25,  name:'Android'}, {value: 9,  name:'Others'}]
                         }
                     ]
                 },
@@ -504,7 +504,7 @@ var option_dt = {
                         {
                             name:'04-16',
                             type:'pie',
-                            data:[{value: 29,  name:'Apple'}, {value: 16,  name:'Windows'}, {value: 24,  name:'Linux'}, {value: 19,  name:'Android'}, {value: 5,  name:'Others'}]
+                            data:[{value: 32,  name:'Kingsway'}, {value: 16,  name:'Windows'}, {value: 24,  name:'Linux'}, {value: 19,  name:'Android'}, {value: 5,  name:'Others'}]
                         }
                     ]
                 },
