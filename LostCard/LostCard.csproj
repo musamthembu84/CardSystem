@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,8 +85,8 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OpenPop">
-      <HintPath>..\..\..\..\..\Desktop\Aart\card\RCNS\RCNS\RCNS\bin\x86\Release\OpenPop.dll</HintPath>
+    <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -228,7 +229,7 @@
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Card.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>newData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CardUser.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -253,8 +254,23 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\mvcAdmin.cs" />
     <Compile Include="Models\mvcCards.cs" />
+    <Compile Include="Models\newData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>newData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\newData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>newData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\newData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>newData.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserTable.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>newData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -292,6 +308,16 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\newData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>newData.edmx</DependentUpon>
+      <LastGenOutput>newData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\newData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>newData.edmx</DependentUpon>
+      <LastGenOutput>newData.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -305,6 +331,13 @@
     </EntityDeploy>
     <Content Include="Models\DBModel.edmx.diagram">
       <DependentUpon>DBModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\newData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>newData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\newData.edmx.diagram">
+      <DependentUpon>newData.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

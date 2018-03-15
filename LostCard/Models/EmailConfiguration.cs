@@ -49,7 +49,7 @@ namespace LostCard.Models
             SmtpClient client = new SmtpClient("smtp.gmail.com");
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential("universityofjohannesburg.card@gmail.com", "streetwise");
-            client.Port = 587;
+            client.Port = 587;  //587
             client.EnableSsl = true;
             client.Send(mailMessage);
 

@@ -53,47 +53,48 @@ namespace LostCard.Controllers
         public ActionResult Register(mvcCards student)
         {
            
-                try
-                {
-                    bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
 
-                    if (anyUserExists == true)
-                    {
-                    TempData["Student"] = student.SNumber;
-                    return RedirectToAction("CardAvail");
+             try
+             {
+                 bool anyUserExists = db.Cards.Any(x => x.SNumber == student.SNumber);
 
-                    }
+                 if (anyUserExists == true)
+                 {
+                 TempData["Student"] = student.SNumber;
+                 return RedirectToAction("CardAvail");
 
-                    else
-                    {
+                 }
 
-                        EmailConfiguration emails = new EmailConfiguration();
-                        bool isValid = emails.Email(student);
-                        if (isValid == true)
-                        {
-                            return RedirectToAction("Failed");
-                        }
-                        else
-                        {
-                            HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
-                            TempData["SuccessMessage"] = "Saved Successfully";
-                            TempData["CardNumber"] = student.SNumber;
-                            return RedirectToAction("Success");
-                        }
+                 else
+                 {
 
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    Ex.GetBaseException();
-                    return RedirectToAction("Failed");
-                }
-           
+                     EmailConfiguration emails = new EmailConfiguration();
+                     bool isValid = emails.Email(student);
+                     if (isValid == true)
+                     {
+                         return RedirectToAction("Failed");
+                     }
+                     else
+                     {
+                         HttpResponseMessage response = GlobalVariables.webApi.PostAsJsonAsync("Cards", student).Result;
+                         TempData["SuccessMessage"] = "Saved Successfully";
+                         TempData["CardNumber"] = student.SNumber;
+                         return RedirectToAction("Success");
+                     }
 
-           
+                 }
+             }
+             catch (Exception Ex)
+             {
+                 Ex.GetBaseException();
+                 return RedirectToAction("Failed");
+             }
 
-           
-           
+
+
+
+        
+
         }
 
 
