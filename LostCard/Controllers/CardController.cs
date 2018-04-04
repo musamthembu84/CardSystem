@@ -21,6 +21,7 @@ namespace LostCard.Controllers
             IEnumerable<mvcCards> myList = null;
             HttpResponseMessage response = GlobalVariables.webApi.GetAsync("Cards").Result;
             myList = response.Content.ReadAsAsync<IEnumerable<mvcCards>>().Result;
+            TempData["Total"] = db.Cards.Count();
             return View(myList);
         }
 
