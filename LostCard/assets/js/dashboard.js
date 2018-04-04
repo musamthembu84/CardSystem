@@ -398,7 +398,7 @@ var idx = 1;
 var option_dt = {
 
     timeline : {
-        show: true,
+        show: false,
         data : ['06-16','05-16','04-16'],
         label : {
             formatter : function(s) {
@@ -443,7 +443,7 @@ var option_dt = {
                 x: 'left',
                 orient:'vertical',
                 padding: 0,
-                data:['Kingsway','Windows','Linux','Android','Others']
+                data:['Kingsway','Soweto','Bunting','Doorfontein']
             },
             toolbox: {
                 show : true,
@@ -476,7 +476,7 @@ var option_dt = {
 
                             series : [
                                 {
-                                    name:'06-16',
+                                    
                                     type:'pie',
                                     radius : [15, '70%'],
                                     roseType : 'radius',
@@ -486,28 +486,12 @@ var option_dt = {
                                         normal : { label : { show : true }, labelLine : { show : true } },
                                         emphasis : { label : { show : false }, labelLine : {show : false} }
                                     },
-                                    data:[{value: 31,  name:'Kingsway'}, {value: 16,  name:'Windows'}, {value: 27,  name:'Linux'}, {value: 29,  name:'Android'}, {value: 12,  name:'Others'}]
+                                    data:[{value: 25,  name:'Kingsway'}, {value: 25,  name:'Soweto'}, {value: 25,  name:'Bunting'}, {value: 25,  name:'Doorfontein'}]
                                 }
                             ]
-                    }, 
-                {
-                    series : [
-                        {
-                            name:'05-16',
-                            type:'pie',
-                            data:[{value: 30,  name:'Kingsway'}, {value: 51,  name:'Windows'}, {value: 39,  name:'Linux'}, {value: 25,  name:'Android'}, {value: 9,  name:'Others'}]
-                        }
-                    ]
-                },
-                {
-                    series : [
-                        {
-                            name:'04-16',
-                            type:'pie',
-                            data:[{value: 32,  name:'Kingsway'}, {value: 16,  name:'Windows'}, {value: 24,  name:'Linux'}, {value: 19,  name:'Android'}, {value: 5,  name:'Others'}]
-                        }
-                    ]
-                },
+                    },
+					
+                
 
     ] // end options object
 };
@@ -752,7 +736,7 @@ myChart.setOption(option_dt);
         }
     },
     legend: {
-        data:['2016','2015'],
+        data:['Lost Cards','Found Cards'],
         orient: 'vertical',
         x:'left'
     },
@@ -837,7 +821,7 @@ myChart.setOption(option_dt);
     ],
     series : [
         {
-            name:'2016',
+            name:'Lost Cards',
             type:'scatter',
             data: [[161, 51], [167, 59], [159, 49], [157, 63], [155, 53],
                 [170, 59], [159, 47], [166, 69], [176, 66], [160, 75],
@@ -848,8 +832,8 @@ myChart.setOption(option_dt);
             markPoint : {
                 show:false,
                 data : [
-                    {type : 'max', name: ''},
-                    {type : 'min', name: ''}
+                    {type : 'max', name: ''}
+                  
                 ]
             },
             /*markLine : {
@@ -860,7 +844,7 @@ myChart.setOption(option_dt);
             }*/
         },
         {
-            name:'2015',
+            name:'Found Cards',
             type:'scatter',
             data: [[174, 65], [175, 71], [193, 80], [186, 72], [187, 78],
                 [181, 74], [184, 86], [184, 78], [175, 62], [184, 81],
@@ -871,8 +855,8 @@ myChart.setOption(option_dt);
             markPoint : {
                 show:false,
                 data : [
-                    {type : 'max', name: ''},
-                    {type : 'min', name: ''}
+                    {type : 'max', name: ''}
+                    
                 ]
             },
             /*markLine : {
