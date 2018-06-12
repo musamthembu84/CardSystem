@@ -387,8 +387,20 @@ jQuery(function($) {
         myChart.setOption(option); 
 
 
+        /*
 
+        Node and sql combined
 
+        */
+
+function Process(){
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "http://localhost:52074/api/cards", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    var response = JSON.parse(xhttp.responseText); 
+}
 
         /*--------------- Chart 3 -------------*/
 
@@ -486,7 +498,7 @@ var option_dt = {
                                         normal : { label : { show : true }, labelLine : { show : true } },
                                         emphasis : { label : { show : false }, labelLine : {show : false} }
                                     },
-                                    data:[{value: 25,  name:'Kingsway'}, {value: 25,  name:'Soweto'}, {value: 25,  name:'Bunting'}, {value: 25,  name:'Doorfontein'}]
+                                    data:[{value: 34,  name:'APK'}, {value: 16,  name:'Soweto'}, {value: 25,  name:'Bunting'}, {value: 25,  name:'Doorfontein'}]
                                 }
                             ]
                     },
