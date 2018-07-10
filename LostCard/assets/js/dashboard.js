@@ -393,20 +393,47 @@ jQuery(function($) {
 
         */
 
-function Process(){
+function Process(campus){
+    var xmlHttp = new XMLHttpRequest();
+    if (campus =="APK")
+    {
+        xmlHttp.open("GET", "http://localhost:52074/api/cards/APK");
+        xmlHttp.send(null);
+        return xmlHttp.responseText;
+    }
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://localhost:52074/api/cards", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var response = JSON.parse(xhttp.responseText); 
+    
+    if (campus =="SWC")
+    {
+        xmlHttp.open("GET", "http://localhost:52074/api/cards/SWC");
+        xmlHttp.send(null);
+        return xmlHttp.responseText;
+    }
+
+
+    if (campus =="DFC")
+    {
+        xmlHttp.open("GET", "http://localhost:52074/api/cards/DFC");
+        xmlHttp.send(null);
+        return xmlHttp.responseText;
+    }
+
+    if (campus =="APB")
+    {
+        xmlHttp.open("GET", "http://localhost:52074/api/cards/APB");
+        xmlHttp.send(null);
+        return xmlHttp.responseText;
+    }
+    
 }
 
         /*--------------- Chart 3 -------------*/
 
 var myChart = echarts.init(document.getElementById('platform_type_dates')); 
 
+/*Display*/ 
 var idx = 1;
+var myCampus = Process();
 var option_dt = {
 
     timeline : {
@@ -498,7 +525,7 @@ var option_dt = {
                                         normal : { label : { show : true }, labelLine : { show : true } },
                                         emphasis : { label : { show : false }, labelLine : {show : false} }
                                     },
-                                    data:[{value: 34,  name:'APK'}, {value: 16,  name:'Soweto'}, {value: 25,  name:'Bunting'}, {value: 25,  name:'Doorfontein'}]
+                                    data:[{value: Process('APK'),  name:'APK'}, {value: Process('SWC'),  name:'SWC'}, {value: Process('DFC'),  name:'DFC'}, {value: Process('APB'),  name:'APB'}]
                                 }
                             ]
                     },
