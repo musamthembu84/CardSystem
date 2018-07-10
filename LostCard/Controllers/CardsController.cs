@@ -25,7 +25,7 @@ namespace LostCard.Controllers
 
 
 
-        [Route("api/cards/{anyString}")]
+        [Route("api/campus/{anyString}")]
         [HttpGet, HttpPost]
         public int GetDeliveryItemsOne(string anyString)
         {
