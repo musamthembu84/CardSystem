@@ -250,6 +250,7 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\EmailConfiguration.cs" />
+    <Compile Include="Models\gpChart.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\mvcAdmin.cs" />
