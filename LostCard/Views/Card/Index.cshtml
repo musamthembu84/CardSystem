@@ -51,6 +51,18 @@
     <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
     <!-- CORE CSS TEMPLATE - END -->
 
+
+    <script>
+        function does() {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://localhost:52074/api/cards/3", false);
+            xmlHttp.send(null);
+            var va = xmlHttp.responseText;
+            alert(va);
+
+           
+        }
+    </script>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -352,11 +364,14 @@
                     </section>
                 </div>
 
+               
+
                 <div class="col-xs-12 col-md-6 col-lg-6">
                     <section class="box ">
                         <header class="panel_header">
                             <h2 class="title pull-left">Total Lost and Retrieved</h2>
-                            <div class="actions panel_actions pull-right">
+                            <button type="submit" onclick="does()"> bbbbbbbbbbbbbbbbbbbbbb</button>
+                            <div class="actions panel_actions pull-right">   
                                 <a class="box_toggle fa fa-chevron-down"></a>
                                 <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
                                 <a class="box_close fa fa-times"></a>
