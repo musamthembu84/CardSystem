@@ -394,37 +394,13 @@ jQuery(function($) {
         */
 
 function Process(campus){
+       
+
     var xmlHttp = new XMLHttpRequest();
-    if (campus =="APK")
-    {
-        xmlHttp.open("GET", "http://localhost:52074/api/cards/APK");
-        xmlHttp.send(null);
-        return xmlHttp.responseText;
-    }
-
-    
-    if (campus =="SWC")
-    {
-        xmlHttp.open("GET", "http://localhost:52074/api/cards/SWC");
-        xmlHttp.send(null);
-        return xmlHttp.responseText;
-    }
-
-
-    if (campus =="DFC")
-    {
-        xmlHttp.open("GET", "http://localhost:52074/api/cards/DFC");
-        xmlHttp.send(null);
-        return xmlHttp.responseText;
-    }
-
-    if (campus =="APB")
-    {
-        xmlHttp.open("GET", "http://localhost:52074/api/cards/APB");
-        xmlHttp.send(null);
-        return xmlHttp.responseText;
-    }
-    
+    xmlHttp.open("GET", "http://localhost:52074/api/campus/"+campus+"", false);
+    xmlHttp.send(null);
+    var va = xmlHttp.responseText;
+    return va;
 }
 
         /*--------------- Chart 3 -------------*/
@@ -433,7 +409,10 @@ var myChart = echarts.init(document.getElementById('platform_type_dates'));
 
 /*Display*/ 
 var idx = 1;
-var myCampus = Process();
+var myApk = Process('APK');
+var myAPB = Process('APB');
+var mySWC = Process('SWC');
+var myDFC = Process('DFC');
 var option_dt = {
 
     timeline : {
@@ -482,7 +461,7 @@ var option_dt = {
                 x: 'left',
                 orient:'vertical',
                 padding: 0,
-                data:['Kingsway','Soweto','Bunting','Doorfontein']
+                data:['APK','SWC','APB','DFC']
             },
             toolbox: {
                 show : true,
@@ -525,7 +504,7 @@ var option_dt = {
                                         normal : { label : { show : true }, labelLine : { show : true } },
                                         emphasis : { label : { show : false }, labelLine : {show : false} }
                                     },
-                                    data:[{value: Process('APK'),  name:'APK'}, {value: Process('SWC'),  name:'SWC'}, {value: Process('DFC'),  name:'DFC'}, {value: Process('APB'),  name:'APB'}]
+                                    data:[{value: myApk,  name:'APK'}, {value: mySWC,  name:'SWC'}, {value: myDFC,  name:'DFC'}, {value: myAPB,  name:'APB'}]
                                 }
                             ]
                     },
