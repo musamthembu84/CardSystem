@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using LostCard.Models;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace LostCard.Controllers
 {
@@ -32,9 +33,6 @@ namespace LostCard.Controllers
             return db.Cards;
 
         }
-
-
-       
 
 
         public ActionResult Register(int i = 0)
@@ -90,12 +88,6 @@ namespace LostCard.Controllers
                  Ex.GetBaseException();
                  return RedirectToAction("Failed");
              }
-
-
-
-
-        
-
         }
 
 
@@ -237,9 +229,14 @@ namespace LostCard.Controllers
 
         }
 
+        public ActionResult Counter()
+        {
+            gpChart gp = new gpChart();
+            string wow = "myDfc";
+            gp.word = JsonConvert.SerializeObject(wow);
+            return View(gp);
 
-
-
+        }
 
     }
 }
