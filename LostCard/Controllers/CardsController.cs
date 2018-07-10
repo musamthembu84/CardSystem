@@ -12,6 +12,7 @@ using LostCard.Models;
 
 namespace LostCard.Controllers
 {
+    //[RoutePrefix("api/Cards")]
     public class CardsController : ApiController
     {
         private LostCardsEntities1 db = new LostCardsEntities1();
@@ -21,6 +22,28 @@ namespace LostCard.Controllers
         {
             return db.Cards;
         }
+
+
+
+        [Route("api/cards/{anyString}")]
+        [HttpGet, HttpPost]
+        public int GetDeliveryItemsOne(string anyString)
+        {
+            int count = db.Cards.Count(f => f.Campus == anyString.ToLower());
+            return count;
+        }
+
+
+        [Route("{name}")]
+        [HttpGet]
+        public string GetByName(string campus)
+        {
+            
+            //int count = db.Cards.Count(f => f.Campus == campus.ToLower());
+            return "test2";
+        }
+
+       
 
         // GET: api/Cards/5
         [ResponseType(typeof(Card))]
@@ -32,8 +55,12 @@ namespace LostCard.Controllers
                 return NotFound();
             }
 
-            return Ok(card);
+            return Ok(card.ID);
         }
+
+        
+
+
 
         // PUT: api/Cards/5
         [ResponseType(typeof(void))]
